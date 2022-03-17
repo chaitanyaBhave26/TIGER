@@ -13,4 +13,4 @@ Importing modules from TIGER requires you to run step #6 every time you open the
 
 source ~/.bash_profile
 
-Once added to your bash profile you can access the python module from any location on the computer.
+Once added to your bash profile you can access the python module from any location on the computer. 
