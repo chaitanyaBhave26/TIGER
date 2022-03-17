@@ -21,6 +21,7 @@ MF = MultiExodusReader(filenames)
 times = MF.global_times
 
 #Read c_Cr data at timestep 1
+## For 1D, Exodus stores the x elements twice, so we select the first set using x[:,0]
 x,y,z,c = MF.get_data_at_time('c_Cr',MF.global_times[1])
 ax.plot(x[:,0],c[:],'r-',linewidth=1.5)
 
