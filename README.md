@@ -1,7 +1,16 @@
 #TIGER
-A Python module for directly accessing Exodus and Nemesis file data as numpy arrays. I have also provided example scripts for plotting 1D, 2D and 3D exodus files. 
+A Python module for directly accessing Exodus and Nemesis file data as numpy arrays. I have also provided example scripts for plotting 1D, 2D and 3D exodus files.
 
-Requires the following Python modules be installed: matplotlib numpy scipy h5py netcdf4
-You can install them by running: pip install matplotlib numpy scipy h5py netcdf4
+Installation instructions:
+1. cd ~/projects/
+2. git clone https://github.com/chaitanyaBhave26/TIGER.git
+3. module load python                             (optional, needed on Hipergator )
+4. pip install matplotlib numpy scipy h5py netcdf4
+5. cd ~/projects/TIGER/
+6. export PYTHONPATH=$PYTHONPATH:~/projects/TIGER (Or whichever location you cloned TIGER to.)
 
-Importing this module in Python scripts requires TIGER to be added to your PYTHONPATH, or you can copy ExodusReader.py and MultiExodusReader.py into the working directory.
+Importing modules from TIGER requires you to run step #6 every time you open the window. Alternatively you can copy that command into your bash profile (~/.bash_profile) using your choice of text editor. After copying the command, either restart the terminal window or run
+
+source ~/.bash_profile
+
+Once added to your bash profile you can access the python module from any location on the computer.
