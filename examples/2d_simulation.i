@@ -186,7 +186,7 @@
 
 [Outputs]
   file_base = '2D/grain_growth_2D_graintracker_out'
-  nemesis = true
+  exodus = true
   csv = true
   [./console]
     type = Console
