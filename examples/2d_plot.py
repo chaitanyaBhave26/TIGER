@@ -17,7 +17,7 @@ MF = MultiExodusReader(filenames)
 times = MF.global_times
 
 ##Getting closest time step to desired simulation time for render
-n_frames = 20
+n_frames = 200
 t_max = times[-1]
 t_frames =  np.linspace(0,t_max,n_frames)
 idx_frames = [ np.where(times-t_frames[i] == min(times-t_frames[i],key=abs) )[0][0] for i in range(n_frames) ]
@@ -46,3 +46,4 @@ for (i,time_step) in enumerate(idx_frames):
     ax.set_aspect('equal')                                                                  #Ensures mesh image has same aspect ratio as physical dimensions
     fig.colorbar(p,label="Cr mole fraction")
     fig.savefig('2D/2d_render_'+str(i)+'.png',dpi=500,transparent=True )             #Remember to create the folder pyrender to store images in!!
+    plt.close()
