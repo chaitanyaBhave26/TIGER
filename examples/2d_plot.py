@@ -44,6 +44,6 @@ for (i,time_step) in enumerate(idx_frames):
     ax.set_xlim([0,1000])                                                                   #You can use x and y arrays for setting this, but usually it is easier to manually set
     ax.set_ylim([0,1000])
     ax.set_aspect('equal')                                                                  #Ensures mesh image has same aspect ratio as physical dimensions
-    fig.colorbar(p,label="Cr mole fraction")
+    fig.colorbar(p,label="Unique grains")
     fig.savefig('2D/2d_render_'+str(i)+'.png',dpi=500,transparent=True )             #Remember to create the folder pyrender to store images in!!
     plt.close()
