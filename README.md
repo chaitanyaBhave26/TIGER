@@ -5,7 +5,7 @@ Installation instructions:
 1. cd ~/projects/
 2. git clone https://github.com/chaitanyaBhave26/TIGER.git
 3. module load python                             (optional, needed on Hipergator )
-4. pip install matplotlib numpy scipy h5py netcdf4
+4. pip install matplotlib numpy scipy h5py netcdf4 opencv-python
 5. cd ~/projects/TIGER/
 6. export PYTHONPATH=$PYTHONPATH:~/projects/TIGER (Or whichever location you cloned TIGER to.)
 
@@ -13,4 +13,4 @@ Importing modules from TIGER requires you to run step #6 every time you open the
 
 source ~/.bash_profile
 
-Once added to your bash profile you can access the python module from any location on the computer. 
+Once added to your bash profile you can access the python module from any location on the computer.
