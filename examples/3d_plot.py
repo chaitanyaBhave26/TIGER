@@ -35,6 +35,7 @@ C = cw.to_rgba(c)
 surfaces = []
 colors = []
 
+coords = np.asarray([ np.asarray([x_val,y_val,z_val]).T for (x_val,y_val,z_val) in zip(x,y,z) ])
 for (i,side) in enumerate(coords):
     sides = [ [side[0],side[1],side[2],side[3]],
                      [side[4],side[5],side[6],side[7]],
