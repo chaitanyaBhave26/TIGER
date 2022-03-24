@@ -17,7 +17,7 @@ MF = MultiExodusReader(filenames)
 times = MF.global_times
 
 ##Getting closest time step to desired simulation time for render
-n_frames = 200
+n_frames = 2 #00
 t_max = times[-1]
 t_frames =  np.linspace(0,t_max,n_frames)
 idx_frames = [ np.where(times-t_frames[i] == min(times-t_frames[i],key=abs) )[0][0] for i in range(n_frames) ]
@@ -30,11 +30,11 @@ for (i,time_step) in enumerate(idx_frames):
     x,y,z,c = MF.get_data_at_time('unique_grains',MF.global_times[time_step])               #Read coordinates and variable value --> Will be parallelized in future
     coords = np.asarray([ np.asarray([x_val,y_val]).T for (x_val,y_val) in zip(x,y) ])
     patches = [Polygon(points) for points in coords]                                        #Patch collection sets all the polygons we drew using the mesh
-    p = PatchCollection(patches, cmap=matplotlib.cm.coolwarm, alpha=1)#,edgecolor='k')      #Edge color can be set if you want to show mesh
+    p = PatchCollection(patches, cmap=matplotlib.cm.coolwarm, alpha=1,edgecolor='k')      #Edge color can be set if you want to show mesh
 
     ## Map plot variable range to color range
-    c_min = 0 #np.amin(c)
-    c_max = 1 #np.amax(c)
+    c_min = np.amin(c)
+    c_max = np.amax(c)
     colors = 255*(c - c_min)/(c_max-c_min)
     prev_coords = np.copy(coords)
 
