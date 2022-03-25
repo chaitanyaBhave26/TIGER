@@ -3,11 +3,18 @@ import numpy as np
 from time import time
 import os
 
+try:
+    from mpi4py import MPI
+    parallel_flag = True
+except:
+    print("Cannot run in parallel")
+    parallel_flag = False
+
 class ExodusReader:
     def __init__(self,file_name):
         if os.path.exists(file_name):
             self.file_name = file_name
-            self.mesh = Dataset(self.file_name,'r')
+            self.mesh = Dataset(self.file_name,'r',parallel=parallel_flag)
             self.get_times()
             self.get_xyz()
             self.get_nodal_names()
