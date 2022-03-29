@@ -2,23 +2,29 @@ import glob
 import os
 import cv2
 
-#DEFINE PATTERN THAT DESCRIBES ALL IMAGES --> * CAN BE FILLED WITH ANYTHING
-file_names = '2D/2d_fancy_*.png'
-video_file_name = '2D/2d_fancy.avi'
+#DEFINE BASE NAME FOR FILES
+file_names = 'temp/1d_exodus_line_plot_'
+#NAME OF VIDEO FILE TO GENERATE
+video_file_name = '2D/2D_render.avi'
+#PARAMETERS FOR VIDEO
+n_frames = 200
+fps = 20
 
-#USE GLOB TO READ ALL FILES WITH GIVEN PATTERN
-img_name_list = glob.glob(file_names)
-#SORT BY MODIFIED DATE TO ENSURE FRAMES ARE IN RIGHT ORDER
-img_name_list.sort(key=os.path.getmtime)
+frames =[]
+for i in range(n_frames):
+    frames += [Image.open(file_names+str(i)+'.png')]
 
-frames = [cv2.imread(name) for name in img_name_list]
-
+#GET DIMENSIONS OF FRAME
 h,w,c = frames[0].shape
 
+#FOURCC OBJECT ENCODES THE IMAGE SEQUENCE INTO REQUIRED FORMAT
 fourcc = cv2.VideoWriter_fourcc('M', 'J', 'P', 'G')
-out = cv2.VideoWriter(video_file_name,fourcc,20,(w,h))
+#VIDEO WRITER OBJECT TO ACTUALLY WRITE THE VIDEO
+out = cv2.VideoWriter(video_file_name,fourcc,fps,(w,h))
 
+#WRITE FRAMES TO VIDEO FILE
 for frame in frames:
     out.write(frame)
 
+#RELEASE VIDEO WRITER OBJECT (NOT NECESSARY BUT GOOD PRACTICE)
 out.release()
