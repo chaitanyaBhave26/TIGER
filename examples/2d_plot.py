@@ -2,7 +2,7 @@ from MultiExodusReader import MultiExodusReader
 
 import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
-from matplotlib.collections import PatchCollection
+from matplotlib.collections import PolyCollection
 import matplotlib
 import numpy as np
 from time import time
@@ -29,8 +29,7 @@ for (i,time_step) in enumerate(idx_frames):
 
     x,y,z,c = MF.get_data_at_time('unique_grains',MF.global_times[time_step])               #Read coordinates and variable value --> Will be parallelized in future
     coords = np.asarray([ np.asarray([x_val,y_val]).T for (x_val,y_val) in zip(x,y) ])
-    patches = [Polygon(points) for points in coords]                                        #Patch collection sets all the polygons we drew using the mesh
-    p = PatchCollection(patches, cmap=matplotlib.cm.coolwarm, alpha=1,edgecolor='k')      #Edge color can be set if you want to show mesh
+    p = PolyCollection(coords, cmap=matplotlib.cm.coolwarm, alpha=1,edgecolor='k')      #Edge color can be set if you want to show mesh
 
     ## Map plot variable range to color range
     c_min = np.amin(c)
