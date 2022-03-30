@@ -17,4 +17,4 @@ for i in range(n_frames):
 #EACH FRAME LASTS 1000/FPS MILLISECONDS
 frame_duration = 1000/fps
 #SAVE PIL.IMAGE SEQUENCE INTO A GIF --> TURN ON OPTIMIZE FOR SMALLER FILE SIZE
-frames[0].save('gif_file_name',save_all=True,optimize=False,append_images=frames[1:],loop=0,duration=frame_duration)
+frames[0].save(gif_file_name,save_all=True,optimize=False,append_images=frames[1:],loop=0,duration=frame_duration)
