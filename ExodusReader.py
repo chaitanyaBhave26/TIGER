@@ -1,14 +1,6 @@
 from netCDF4 import Dataset
 import numpy as np
-from time import time
 import os
-
-# try:
-#     from mpi4py import MPI
-#     parallel_flag = True
-# except:
-#     print("Cannot run in parallel")
-#     parallel_flag = False
 
 class ExodusReader:
     def __init__(self,file_name):

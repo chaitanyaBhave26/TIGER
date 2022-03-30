@@ -1,8 +1,6 @@
 import ExodusReader
 import glob
 import numpy as np
-from time import time
-from multiprocessing import Pool
 
 class MultiExodusReader:
     def __init__(self,file_names):
