@@ -84,7 +84,7 @@ ax2.set_xlabel('Distance ($\mu$m)',fontsize=7,fontweight='bold')
 #GET POLYGONS FOR EACH CELL IN MESH
 coords = np.asarray([ np.asarray([x_val,y_val]).T for (x_val,y_val) in zip(x,y) ])
 #USE POLYCOLLECTION TO DRAW ALL THE POLYGONS
-p = PolyCollection(patches, cmap=matplotlib.cm.coolwarm, alpha=1)#,edgecolor='k')      #Edge color can be set if you want to show mesh
+p = PolyCollection(coords, cmap=matplotlib.cm.coolwarm, alpha=1)#,edgecolor='k')      #Edge color can be set if you want to show mesh
 #USE COLORING VARIABLE 'c' TO COLOR POLYGONS
 p.set_array(np.array(c) )
 #ADD POLYGON COLLECTION TO AXIS --> THIS ACTUALLY PLOTS THE POLYGONS
