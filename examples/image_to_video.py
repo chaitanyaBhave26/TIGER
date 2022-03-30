@@ -12,7 +12,7 @@ fps = 20
 
 frames =[]
 for i in range(n_frames):
-    frames += [Image.open(file_names+str(i)+'.png')]
+    frames += [cv2.imread(file_names+str(i)+'.png')]
 
 #GET DIMENSIONS OF FRAME
 h,w,c = frames[0].shape
