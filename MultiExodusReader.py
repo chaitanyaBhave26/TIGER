@@ -31,19 +31,28 @@ class MultiExodusReader:
         return (x,y,z,c)
 
     def get_data_at_time(self,var_name,read_time):
+        X = []
+        Y = []
+        Z = []
+        C = []
         for (i,file_time) in enumerate(self.file_times):
             if ( file_time[0]<= read_time and file_time[1]>= read_time  ):
                 x,y,z,c = self.get_data_from_file_idx(var_name,read_time,i)
                 try:
-                    X = np.vstack([X,x])
-                    Y = np.vstack([Y,y])
-                    Z = np.vstack([Z,z])
-                    C = np.hstack([C,c])
+                    X.append(x)
+                    Y.append(y)
+                    Z.append(z)
+                    C.append(c)
                 except:
+                    # Is this actually what you want it to do?
                     X = x
                     Y = y
                     Z = z
                     C = c
             else:
                 pass
+        X = np.vstack(X)
+        Y = np.vstack(Y)
+        Z = np.vstack(Z)
+        C = np.hstack(C)
         return (X,Y,Z,C)
