@@ -42,20 +42,14 @@ surfaces = []
 colors = []
 
 #GENERATE CORNER POINT COORDINATES FOR THE QUAD8 MESH POLYGONS
-coords = np.asarray([ np.asarray([x_val,y_val,z_val]).T for (x_val,y_val,z_val) in zip(x,y,z) ])
+coords = np.dstack([x,z,y])
 
-#GENERATE THE 6 SIDES FOR EACH POLYGON, AND ASSIGN THE CELL VALUE OF THE POLYGON TO THE sides
-#THIS CODE IS VERY UNOPTIMIZED, AND WILL BE IMPROVED IN THE FUTURE
-for (i,side) in enumerate(coords):
-    sides = [ [side[0],side[1],side[2],side[3]],
-                     [side[4],side[5],side[6],side[7]],
-                     [side[0],side[1],side[5],side[4]],
-                     [side[3],side[2],side[6],side[7]],
-                     [side[1],side[2],side[6],side[5]],
-                     [side[4],side[7],side[3],side[0]] ]
-    c_temp = [C[i] for j in range(6)]
-    surfaces+=sides
-    colors+=c_temp
+#GENERATE THE 3 SIDES FOR EACH POLYGON, AND ASSIGN THE CELL VALUE OF THE POLYGON TO THE sides
+colors = np.repeat(C,3,axis=0)
+surfaces = np.ndarray((coords.shape[0]*3,4,3))
+surfaces[0::3]=coords[:,[0,1,2,3],:]
+surfaces[1::3]=coords[:,[3,2,6,7],:]
+surfaces[2::3]=coords[:,[4,7,3,0],:]
 
 #CREATE A Poly3DCollection FROM OUR SURFACES
 P = Poly3DCollection(surfaces, facecolors=colors,   alpha=1.0)
