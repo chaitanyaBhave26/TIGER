@@ -40,7 +40,7 @@ for (i,time_step) in enumerate(idx_frames):
     p = PolyCollection(coords, cmap=matplotlib.cm.coolwarm, alpha=1,edgecolor='k')      #Edge color can be set if you want to show mesh
 
     #COLOR THE POLYGONS WITH OUR VARIABLE
-    p.set_array(np.array(colors) )
+    p.set_array(np.array(c) )
 
     #ADD THE POLYGON COLLECTION TO AXIS --> THIS IS WHAT ACTUALLY PLOTS THE POLYGONS ON OUR WINDOW
     ax.add_collection(p)
