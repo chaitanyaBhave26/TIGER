@@ -1,6 +1,7 @@
 from netCDF4 import Dataset
 import numpy as np
 import os
+import re
 
 class ExodusReader:
     def __init__(self,file_name):
@@ -41,7 +42,9 @@ class ExodusReader:
             self.dim += 1
         except:
             z = np.zeros(x.shape)
-        connect = self.mesh.variables['connect1'][:]
+        connect_re = re.compile("connect[0-9]+$")
+        select_keys = [key for key in self.mesh.variables.keys() if  connect_re.match(key)]
+        connect = np.vstack([self.mesh.variables[key][:] for key in select_keys])
         xyz = np.array([x[:], y[:],z[:]]).T
         X = x[connect[:] -1]
         Y = y[connect[:] -1]
@@ -50,7 +53,7 @@ class ExodusReader:
         self.x = np.asarray(X)
         self.y = np.asarray(Y)
         self.z = np.asarray(Z)
-        self.connect = self.mesh.variables['connect1'][:]
+        self.connect = connect
 
         return (self.x,self.y,self.z)
     def get_nodal_names(self):
