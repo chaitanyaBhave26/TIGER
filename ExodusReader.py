@@ -9,8 +9,14 @@ class ExodusReader:
             self.mesh = Dataset(self.file_name,'r') #,parallel=parallel_flag
             self.get_times()
             self.get_xyz()
-            self.get_nodal_names()
-            self.get_elem_names()
+            try:
+                self.get_nodal_names()
+            except:
+                pass
+            try:
+                self.get_elem_names()
+            except:
+                pass
         else:
             print("File path does not exist. Please check if file path and name are correct.")
             exit()
