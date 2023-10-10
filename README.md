@@ -13,25 +13,27 @@ TIGER is a Python module for directly accessing Exodus and Nemesis file data as 
     ```
 
 ### Option A - Conda installation (Recommended):
-If you don't already have Conda, install by following the instructions on the [Conda website](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html).
-
-3. If installing on a HPC
+3. If you don't already have Conda, install by following the instructions on the [Conda website](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html). Alternatively, if you are installing TIGER on a HPC with prebuilt conda module, run
     ```
     module load conda
     ```
- 
-4. Create the TIGER environment and install dependencies
+4. Install the conda-build package
+    ```
+    conda activate base
+    conda install conda-develop
+    ```
+ 5. Create the TIGER environment and install dependencies
     ```
     conda create --name tiger_env h5py netcdf4 matplotlib scipy numpy
     ```
-6. Activate the TIGER environment. This step needs to be run whenever you want to use TIGER in a new terminal tab or window)
+6. Build the TIGER package in development mode
+    ```
+    conda develop -n tiger_env ~/projects/TIGER 
+    ```        
+7. Activate the TIGER environment. This step needs to be run whenever you want to use TIGER in a new terminal tab or window)
     ```
     conda activate tiger_env
     ```   
-7. Install the TIGER package in development mode
-    ```
-    conda develop ~/projects/TIGER
-    ```                 
 8. Optionally, you can install OpenCV if you want to perform Computer Vision operations on your exodus file outputs.
     ```
     conda install -c menpo opencv
