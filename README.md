@@ -20,7 +20,7 @@ TIGER is a Python module for directly accessing Exodus and Nemesis file data as 
 4. Install the conda-build package
     ```
     conda activate base
-    conda install conda-develop
+    conda install conda-build
     ```
  5. Create the TIGER environment and install dependencies
     ```
