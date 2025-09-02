@@ -10,6 +10,8 @@ class ExodusReader:
             self.mesh = Dataset(self.file_name,'r') #,parallel=parallel_flag
             self.get_times()
             self.get_xyz()
+            self.nodal_var_names = []
+            self.elem_var_names = []
             try:
                 self.get_nodal_names()
             except:
